@@ -12,6 +12,10 @@ if ('fonts' in document) {
     });
 }
 
+
+
+
+
 // Lazy loading by scroll
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -37,6 +41,23 @@ document.addEventListener("DOMContentLoaded", function() {
     if (activeSlide) {
         loadBackground(activeSlide);
     }
+// Lazy loading for my FAVORITE block
+
+    const headerFirst = document.querySelector('.header-content-h1-first');
+    const headerSub = document.querySelector('.header-content-h1-sub');
+
+    const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                headerFirst.classList.remove('hidden');
+                headerSub.classList.remove('hidden');
+                observer.unobserve(entry.target);
+            }
+        });
+    });
+
+    observer.observe(headerFirst);
+    observer.observe(headerSub);
 
 // Lazy loading by scroll - carousel preload on next slide
 
