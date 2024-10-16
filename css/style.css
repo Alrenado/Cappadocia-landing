@@ -31,7 +31,7 @@
 :root {
     --yellow-shadow: rgba(226, 171, 63, 0.4);
     --yellow: #E2AB3F;
-    --white-shadow: rgba(255, 255, 255, 0.35);
+    --white-shadow: rgba(255, 255, 255, 0.75);
     --white: #FFFFFF;
     --black: #000000;
 }
@@ -110,6 +110,19 @@ button {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+}
+
+.lazy-background {
+    background-image: none;
+}
+
+.lazy-background-svg {
+    background-image: none;
+    height: 10px;
+}
+
+.loaded-background-svg {
+    background-repeat: no-repeat;
 }
 
 .carousel-control-next-icon {
@@ -198,7 +211,7 @@ input:focus:invalid {
 
 /* Navigation */
 
-.navigation{
+.navigation {
     z-index: 5;
 }
 
@@ -260,9 +273,12 @@ input:focus:invalid {
 .header {
     background-image: url("../img/webp/header-bg.webp"), url("../img/png/header-bg.png");
     background-size: cover;
-
     width: 100%;
     height: 114.3vh;
+}
+
+@media (max-width: 767px) {
+    height: 100vh;
 }
 
 .header-content {
@@ -641,10 +657,11 @@ input:focus:invalid {
 
 @media (max-width: 767px) {
     .footer-container {
-        padding-top: 3em;
+        padding-top: 15em;
     }
-    .footer-title{
-        margin-bottom: 3em;
+
+    .footer-title {
+        margin-bottom: 9em;
     }
 }
 

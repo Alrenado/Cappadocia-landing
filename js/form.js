@@ -1,3 +1,95 @@
+// Lazy loading by scroll
+
+document.addEventListener("DOMContentLoaded", function() {
+    const lazyBackgrounds = document.querySelectorAll(".lazy-background");
+    const lazySvgElements = document.querySelectorAll(".lazy-svg");
+
+    // const lazyLoad = () => {
+    //     lazyBackgrounds.forEach((element) => {
+    //         if (element.getBoundingClientRect().top < window.innerHeight && element.getBoundingClientRect().bottom > 0) {
+    //             const bgWebp = element.getAttribute("data-bg-webp");
+    //             const bgPng = element.getAttribute("data-bg-png");
+    //             element.style.backgroundImage = `url('${bgWebp}'), url('${bgPng}')`;
+    //             element.classList.remove("lazy-background");
+    //         }
+    //     });
+    // };
+
+    const loadBackground = (element) => {
+        const bgWebp = element.getAttribute("data-bg-webp");
+        const bgPng = element.getAttribute("data-bg-png");
+
+        const webpSupported = document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp') === 0;
+
+        if (webpSupported) {
+            element.style.backgroundImage = `url('${bgWebp}')`;
+        } else {
+            element.style.backgroundImage = `url('${bgPng}')`;
+        }
+
+        element.classList.remove("lazy-background");
+    };
+
+    const activeSlide = document.querySelector(".carousel-item.active .lazy-background");
+    if (activeSlide) {
+        loadBackground(activeSlide);
+    }
+
+// Lazy loading by scroll - carousel preload on next slide
+
+    $('#text-block-first_carousel').on('slide.bs.carousel', function(event) {
+        const nextSlide = event.relatedTarget.querySelector(".lazy-background");
+        if (nextSlide) {
+            loadBackground(nextSlide);
+        }
+    });
+
+    $('#text-block-second_carousel').on('slide.bs.carousel', function(event) {
+        const nextSlide = event.relatedTarget.querySelector(".lazy-background");
+        if (nextSlide) {
+            loadBackground(nextSlide);
+        }
+    });
+
+    $('#text-block-third_carousel').on('slide.bs.carousel', function(event) {
+        const nextSlide = event.relatedTarget.querySelector(".lazy-background");
+        if (nextSlide) {
+            loadBackground(nextSlide);
+        }
+    });
+
+    const lazyLoad = () => {
+        lazyBackgrounds.forEach((element) => {
+            if (element.getBoundingClientRect().top < window.innerHeight && element.getBoundingClientRect().bottom > 0) {
+                loadBackground(element);
+            }
+        });
+    };
+
+    window.addEventListener("scroll", lazyLoad);
+    lazyLoad();
+
+
+    const lazyLoadSvg = () => {
+        lazySvgElements.forEach((element) => {
+            if (element.getBoundingClientRect().top < window.innerHeight && element.getBoundingClientRect().bottom > 0) {
+                const bgSvg = element.getAttribute("data-bg-svg");
+                element.style.backgroundImage = `url('${bgSvg}')`;
+                element.classList.add('loaded-background-svg');
+                element.classList.remove("lazy-background-svg");
+            }
+        });
+    };
+
+    // window.addEventListener("scroll", lazyLoad);
+    window.addEventListener("scroll", lazyLoadSvg);
+    window.addEventListener("resize", lazyLoadSvg);
+
+    lazyLoadSvg();
+    lazyLoad();
+
+});
+
 // Smooth text visibility
 
 function isInViewport(element) {
