@@ -40,6 +40,7 @@ body {
     margin: 0;
     padding: 0;
 
+    scroll-behavior: smooth;
     font-family: Roboto-Condensed-Light, serif;
     color: var(--black);
     background: var(--white);
@@ -568,6 +569,9 @@ input:focus:invalid {
 }
 
 @media (max-width: 767px) {
+    .form-block-fifth {
+        margin-bottom: 3rem;
+    }
 
     .form-block-fifth {
         padding-top: 1rem;
@@ -582,7 +586,7 @@ input:focus:invalid {
     }
 
     .form-block-fifth-container-img {
-        padding-top: 3em;
+        padding-top: 1em;
     }
 
     .form-block-fifth-container-img-item {
