@@ -1,19 +1,30 @@
+// Async font load with default swap
+
+if ('fonts' in document) {
+    // Загрузка шрифта Balqis
+    document.fonts.load('1em Balqis').then(function () {
+        console.log('Balqis font loaded');
+        document.documentElement.classList.add('balqis-loaded');
+    });
+
+    // Загрузка шрифта Roboto Condensed Light
+    document.fonts.load('1em Roboto-Condensed-Light').then(function () {
+        console.log('Roboto Condensed Light loaded');
+        document.documentElement.classList.add('roboto-light-loaded');
+    });
+
+    // Загрузка шрифта Roboto Condensed Regular
+    document.fonts.load('1em Roboto-Condensed-Regular').then(function () {
+        console.log('Roboto Condensed Regular loaded');
+        document.documentElement.classList.add('roboto-regular-loaded');
+    });
+}
+
 // Lazy loading by scroll
 
 document.addEventListener("DOMContentLoaded", function() {
     const lazyBackgrounds = document.querySelectorAll(".lazy-background");
     const lazySvgElements = document.querySelectorAll(".lazy-svg");
-
-    // const lazyLoad = () => {
-    //     lazyBackgrounds.forEach((element) => {
-    //         if (element.getBoundingClientRect().top < window.innerHeight && element.getBoundingClientRect().bottom > 0) {
-    //             const bgWebp = element.getAttribute("data-bg-webp");
-    //             const bgPng = element.getAttribute("data-bg-png");
-    //             element.style.backgroundImage = `url('${bgWebp}'), url('${bgPng}')`;
-    //             element.classList.remove("lazy-background");
-    //         }
-    //     });
-    // };
 
     const loadBackground = (element) => {
         const bgWebp = element.getAttribute("data-bg-webp");
