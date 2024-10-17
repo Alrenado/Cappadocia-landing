@@ -82,6 +82,25 @@ body {
     background: var(--white);
 }
 
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--white);
+
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--yellow);
+    transition: background-color 1s ease-in-out;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    box-shadow: 0 0 0 0.2rem var(--yellow-shadow);
+    background-color: var(--yellow-shadow);
+}
+
 a {
     text-decoration: none;
     font-family: Roboto-Condensed-Regular, Roboto-Condensed-Regular-ttf, serif;
@@ -239,7 +258,7 @@ input:focus:invalid {
     background: var(--white-shadow);
     display: none;
     z-index: 2;
-    transition: opacity 0.3s ease-in-out;
+    transition: opacity 1s ease-in-out;
 }
 
 #overlay.active {

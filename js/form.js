@@ -13,12 +13,9 @@ if ('fonts' in document) {
 }
 
 
-
-
-
 // Lazy loading by scroll
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const lazyBackgrounds = document.querySelectorAll(".lazy-background");
     const lazySvgElements = document.querySelectorAll(".lazy-svg");
 
@@ -61,21 +58,21 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Lazy loading by scroll - carousel preload on next slide
 
-    $('#text-block-first_carousel').on('slide.bs.carousel', function(event) {
+    $('#text-block-first_carousel').on('slide.bs.carousel', function (event) {
         const nextSlide = event.relatedTarget.querySelector(".lazy-background");
         if (nextSlide) {
             loadBackground(nextSlide);
         }
     });
 
-    $('#text-block-second_carousel').on('slide.bs.carousel', function(event) {
+    $('#text-block-second_carousel').on('slide.bs.carousel', function (event) {
         const nextSlide = event.relatedTarget.querySelector(".lazy-background");
         if (nextSlide) {
             loadBackground(nextSlide);
         }
     });
 
-    $('#text-block-third_carousel').on('slide.bs.carousel', function(event) {
+    $('#text-block-third_carousel').on('slide.bs.carousel', function (event) {
         const nextSlide = event.relatedTarget.querySelector(".lazy-background");
         if (nextSlide) {
             loadBackground(nextSlide);
@@ -145,7 +142,7 @@ document.addEventListener("mousemove", parallax);
 
 function parallax(e) {
     const screenWidth = window.innerWidth;
-    if (screenWidth > 767){
+    if (screenWidth > 767) {
         this.querySelectorAll('.text-block-fourth-text_container-parallax_item').forEach(item => {
             const speed = item.getAttribute('data-speed');
 
@@ -156,6 +153,7 @@ function parallax(e) {
         })
     }
 }
+
 // Nav overlay
 
 const navbarCollapse = document.querySelector('#navbarSupportedContent');
@@ -165,10 +163,8 @@ const burgerButton = document.querySelector('.navbar-toggler');
 
 burgerButton.addEventListener('click', () => {
     if (navbarCollapse.classList.contains('show')) {
-        console.log("Меню скрыто");
         overlay.classList.remove('active');
     } else {
-        console.log("Меню показано");
         overlay.classList.add('active');
     }
 });
@@ -230,7 +226,7 @@ goToFooter.addEventListener('click', function (e) {
     });
 });
 
-// Validation
+// Validation with Just Validate
 
 const validation = new JustValidate('#myForm');
 console.log(validation);
@@ -261,3 +257,5 @@ validation
         console.log('its work!');
         event.target.reset();
     });
+
+// Smooth scroll with OverlayScrollbars
