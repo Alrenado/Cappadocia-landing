@@ -171,7 +171,6 @@ burgerButton.addEventListener('click', () => {
 
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
-        console.log("Меню скрыто");
         overlay.classList.remove('active');
         navbarCollapse.classList.remove('show');
     });
