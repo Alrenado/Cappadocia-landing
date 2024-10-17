@@ -232,22 +232,32 @@ goToFooter.addEventListener('click', function (e) {
 
 // Validation
 
-const launchBtn = document.getElementById('#launch-btn');
-const nameInput = document.getElementById('#typeName');
-const telInput = document.getElementById('#typeTel');
-
-launchBtn.addEventListener('click', function (e) {
-    e.preventDefault();
-    if (!nameInput.value.match(/[A-Za-zА-Яа-яЁё\s]+/)) {
-        alert('Ім\'я може містити лише літери та пробіл.');
-        return;
-    }
-    if (!telInput.value.match(/\+?[0-9\s\-]+/)) {
-        alert('Телефон повинен містити лише цифри, пробіли, тире або знак +.');
-        return;
-    }
-    console.log(nameInput.value);
-
-    nameInput.value = '';
-    telInput.value = '';
-});
+const validation = new JustValidate('#myForm');
+console.log(validation);
+validation
+    .addField('#nameInput', [
+        {
+            rule: 'required',
+            errorMessage: 'Ім\'я є обов\'язковим!',
+        },
+        {
+            rule: 'customRegexp',
+            value: /^[A-Za-zА-Яа-яЁё\s]+$/,
+            errorMessage: 'Ім\'я може містити лише літери та пробіли.',
+        },
+    ])
+    .addField('#telInput', [
+        {
+            rule: 'required',
+            errorMessage: 'Телефон є обов\'язковим!',
+        },
+        {
+            rule: 'customRegexp',
+            value: /^\+?[0-9\s\-]+$/,
+            errorMessage: 'Телефон повинен містити лише цифри, пробіли, тире або знак +.',
+        },
+    ])
+    .onSuccess((event) => {
+        console.log('its work!');
+        event.target.reset();
+    });
